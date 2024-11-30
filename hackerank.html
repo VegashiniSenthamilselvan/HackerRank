@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Header</title>
+    <style>
+        body, h1, h2, h3, p, ul, li, form, input {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            line-height: 1.6;
+            background: white;
+            color: black;
+            padding: 20px;
+            font-size: large;
+        }
+
+        header {
+            background: black;
+            color: white;
+            padding: 10px 20px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            text-align: left;
+        }
+
+        nav {
+            background: black;
+            padding: 10px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            position: relative;
+            margin: 0 15px;
+        }
+
+        nav ul li:first-child {
+            margin-left: 0;
+        }
+
+        nav ul li a {
+            color: rgb(222, 242, 253);
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: white;
+        }
+
+        nav ul li:first-child a {
+            color: white; /* Gray color for the "HackerRank" link */
+        }
+
+        nav ul li:nth-child(5) a {
+            color: white; /* Gray color for the "Compete" link */
+            position: relative;
+        }
+
+        nav ul li:nth-child(5) a::after {
+            content: "";
+            display: block;
+            width: 100%; /* Full width of the "Compete" link */
+            height: 5px;
+            background-color: green;
+            position: absolute;
+            bottom: -10px; /* Position the line under the "Compete" link */
+            left: 0;
+            transition: width 0.3s ease; /* Smooth transition for width change */
+        }
+
+        .vertical-line {
+            position: absolute;
+            height: 100%;
+            width: 1px;
+            background-color: gray;
+            top: 0;
+            bottom: 0;
+            left: 0; /* Position the line at the left edge of the li */
+        }
+
+        .search-container {
+            position: absolute;
+            right: 20px;
+            top: 6%;
+            color: gray;
+        }
+
+        .search-input {
+            padding: 8px 40px 8px 20px; /* Adjust padding as needed */
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            font-size: 14px;
+            width: 200px; /* Adjust width as needed */
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: gray;
+            cursor: pointer;
+        }
+
+        .search-icon::before {
+            content: "\1F50D"; /* Unicode for search symbol */
+            font-size: 16px;
+        }
+
+        h3 {
+            color: rgb(112, 112, 112);
+        }
+
+        h2 a {
+            text-decoration: none;
+            font-size: small;
+        }
+
+        .rectangular-box {
+            width: 900px; /* Width of the box */
+            height: 130px; /* Height of the box */
+            background-color: white; /* Background color */
+            border: 2px solid #ccc; /* Border style */
+            border-radius: 8px; /* Border radius for rounded corners */
+            padding: 20px; /* Padding inside the box */
+            margin: 20px; /* Margin around the box */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Box shadow for a subtle 3D effect */
+        }
+        .rectangular-box table {
+            width: 100%; /* Make the table responsive within the box */
+        }
+
+        .rectangular-box table h2 {
+            color: rgb(94, 202, 94); /* Heading color */
+            font-size: 1.5em; /* Adjust heading font size */
+        }
+
+        .rectangular-box .success-rate,
+        .rectangular-box .max-score,
+        .rectangular-box .difficulty {
+            color: rgb(125, 125, 125); /* Gray color for details */
+            font-size: 1.2em; /* Adjust font size */
+        }
+
+        .rectangular-box .symbol {
+            
+            bottom: 500px;
+            text-align: right;
+            margin-top: -120px; /* Adjust margin top as needed */
+            margin-bottom: 10px;
+           
+            margin-left: 750px;
+        }
+
+        .rectangular-box .button-container {
+            text-align: right; /* Center the button */
+            margin-top: 20px; /* Adjust margin top as needed */
+        }
+
+        .rectangular-box button {
+            padding: 15px 40px; /* Button padding */
+            background-color: rgb(94, 202, 94);; /* Button background color */
+            color: white; /* Button text color */
+            border: none; /* Remove button border */
+            border-radius: 3px; /* Button border radius */
+            cursor: pointer; /* Cursor style */
+            transition: background-color 0.3s ease; /* Smooth background color transition */
+            font-size: large; /* Button font size */
+        }
+
+        .rectangular-box button:hover {
+            background-color: green; /* Button background color on hover */
+            color: white; /* Button text color on hover */
+        }
+
+        .second-box {
+            width: 900px; /* Width of the box */
+            height: 130px; /* Height of the box */
+            background-color: white; /* Background color */
+            border: 2px solid #ccc; /* Border style */
+            border-radius: 8px; /* Border radius for rounded corners */
+            padding: 20px; /* Padding inside the box */
+            margin: 20px; /* Margin around the box */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Box shadow for a subtle 3D effect */
+        }
+
+        .second-box table {
+            width: 100%; /* Make the table responsive within the box */
+        }
+
+        .second-box table h2 {
+            color: rgb(94, 202, 94); /* Heading color */
+            font-size: 1.5em; /* Adjust heading font size */
+        }
+
+        .second-box .success-rate,
+        .second-box .max-score,
+        .second-box .difficulty {
+            color: rgb(125, 125, 125); /* Gray color for details */
+            font-size: 1.2em; /* Adjust font size */
+        }
+
+        .second-box .symbol {
+            bottom: 500px;
+            text-align: right;
+            margin-top: -120px; /* Adjust margin top as needed */
+            margin-bottom: 10px;
+           
+            margin-left: 750px;
+        }
+
+        .second-box .button-container {
+            
+            text-align: right; /* Center the button */
+            margin-top: 20px; /* Adjust margin top as needed */
+        }
+
+        .second-box button {
+            padding: 15px 40px; /* Button padding */
+            background-color: rgb(94, 202, 94);; /* Button background color */
+            color: white; /* Button text color */
+            border: none; /* Remove button border */
+            border-radius: 3px; /* Button border radius */
+            cursor: pointer; /* Cursor style */
+            transition: background-color 0.3s ease; /* Smooth background color transition */
+            font-size: large; /* Button font size */
+        }
+
+        .second-box button:hover {
+            background-color: green; /* Button background color on hover */
+            color: white; /* Button text color on hover */
+        }
+
+        .third-box {
+            width: 900px; /* Width of the box */
+            height: 130px; /* Height of the box */
+            background-color: white; /* Background color */
+            border: 2px solid #ccc; /* Border style */
+            border-radius: 8px; /* Border radius for rounded corners */
+            padding: 20px; /* Padding inside the box */
+            margin: 20px; /* Margin around the box */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Box shadow for a subtle 3D effect */
+        }
+
+        .third-box table {
+            width: 100%; /* Make the table responsive within the box */
+        }
+
+        .third-box table h2 {
+            color: rgb(94, 202, 94); /* Heading color */
+            font-size: 1.5em; /* Adjust heading font size */
+        }
+
+        .third-box .success-rate,
+        .third-box .max-score,
+        .third-box .difficulty {
+            color: rgb(94, 202, 94); /* Gray color for details */
+            font-size: 1.2em; /* Adjust font size */
+        }
+
+        .third-box .symbol {
+            bottom: 500px;
+            text-align: right;
+            margin-top: -120px; /* Adjust margin top as needed */
+            margin-bottom: 10px;
+           
+            margin-left: 750px;
+        }
+
+        .third-box .button-container {
+            
+            text-align: right; /* Center the button */
+            margin-top: 20px; /* Adjust margin top as needed */
+        }
+
+        .third-box button {
+            padding: 15px 40px; /* Button padding */
+            background-color: rgb(94, 202, 94);; /* Button background color */
+            color: white; /* Button text color */
+            border: none; /* Remove button border */
+            border-radius: 3px; /* Button border radius */
+            cursor: pointer; /* Cursor style */
+            transition: background-color 0.3s ease; /* Smooth background color transition */
+            font-size: large; /* Button font size */
+        }
+
+        .third-box button:hover {
+            background-color: green; /* Button background color on hover */
+            color: white; /* Button text color on hover */
+        }
+
+        .fourth-box {
+            width: 900px; /* Width of the box */
+            height: 130px; /* Height of the box */
+            background-color: white; /* Background color */
+            border: 2px solid #ccc; /* Border style */
+            border-radius: 8px; /* Border radius for rounded corners */
+            padding: 20px; /* Padding inside the box */
+            margin: 20px; /* Margin around the box */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Box shadow for a subtle 3D effect */
+        }
+
+        .fourth-box table {
+            width: 100%; /* Make the table responsive within the box */
+        }
+
+        .fourth-box table h2 {
+            color: rgb(94, 202, 94); /* Heading color */
+            font-size: 1.5em; /* Adjust heading font size */
+        }
+
+        .fourth-box .success-rate,
+        .fourth-box .max-score,
+        .fourth-box .difficulty {
+            color: rgb(125, 125, 125); /* Gray color for details */
+            font-size: 1.2em; /* Adjust font size */
+        }
+
+        .fourth-box .symbol {
+            bottom: 500px;
+            text-align: right;
+            margin-top: -120px; /* Adjust margin top as needed */
+            margin-bottom: 10px;
+           
+            margin-left: 750px;
+        }
+
+        .fourth-box .button-container {
+            
+            text-align: right; /* Center the button */
+            margin-top: 20px; /* Adjust margin top as needed */
+        }
+
+        .fourth-box button {
+            padding: 15px 40px; /* Button padding */
+            background-color: rgb(94, 202, 94);; /* Button background color */
+            color: white; /* Button text color */
+            border: none; /* Remove button border */
+            border-radius: 3px; /* Button border radius */
+            cursor: pointer; /* Cursor style */
+            transition: background-color 0.3s ease; /* Smooth background color transition */
+            font-size: large; /* Button font size */
+        }
+
+        .fourth-box button:hover {
+            background-color: green; /* Button background color on hover */
+            color: white; /* Button text color on hover */
+        }
+
+
+        .fifth-box {
+            width: 900px; /* Width of the box */
+            height: 130px; /* Height of the box */
+            background-color: white; /* Background color */
+            border: 2px solid #ccc; /* Border style */
+            border-radius: 8px; /* Border radius for rounded corners */
+            padding: 20px; /* Padding inside the box */
+            margin: 20px; /* Margin around the box */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Box shadow for a subtle 3D effect */
+        }
+
+        .fifth-box table {
+            width: 100%; /* Make the table responsive within the box */
+        }
+
+        .fifth-box table h2 {
+            color: rgb(94, 202, 94); /* Heading color */
+            font-size: 1.5em; /* Adjust heading font size */
+        }
+
+        .fifth-box .success-rate,
+        .fifth-box .max-score,
+        .fifth-box .difficulty {
+            color: rgb(125, 125, 125); /* Gray color for details */
+            font-size: 1.2em; /* Adjust font size */
+        }
+
+        .fifth-box .symbol {
+            bottom: 500px;
+            text-align: right;
+            margin-top: -120px; /* Adjust margin top as needed */
+            margin-bottom: 10px;
+           
+            margin-left: 750px;
+        }
+
+        .fifth-box .button-container {
+            
+            text-align: right; /* Center the button */
+            margin-top: 20px; /* Adjust margin top as needed */
+        }
+
+        .fifth-box button {
+            padding: 15px 40px; /* Button padding */
+            background-color: rgb(94, 202, 94);; /* Button background color */
+            color: white; /* Button text color */
+            border: none; /* Remove button border */
+            border-radius: 3px; /* Button border radius */
+            cursor: pointer; /* Cursor style */
+            transition: background-color 0.3s ease; /* Smooth background color transition */
+            font-size: large; /* Button font size */
+        }
+
+        .fifth-box button:hover {
+            background-color: green; /* Button background color on hover */
+            color: white; /* Button text color on hover */
+        }
+
+       
+        .sixth-box {
+            width: 900px; /* Width of the box */
+            height: 130px; /* Height of the box */
+            background-color: white; /* Background color */
+            border: 2px solid #ccc; /* Border style */
+            border-radius: 8px; /* Border radius for rounded corners */
+            padding: 20px; /* Padding inside the box */
+            margin: 20px; /* Margin around the box */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Box shadow for a subtle 3D effect */
+        }
+
+        .sixth-box table {
+            width: 100%; /* Make the table responsive within the box */
+        }
+
+        .sixth-box table h2 {
+            color: rgb(94, 202, 94); /* Heading color */
+            font-size: 1.5em; /* Adjust heading font size */
+        }
+
+        .sixth-box .success-rate,
+        .sixth-box .max-score,
+        .sixth-box .difficulty {
+            color: rgb(125, 125, 125); /* Gray color for details */
+            font-size: 1.2em; /* Adjust font size */
+        }
+
+        .sixth-box .symbol {
+            bottom: 500px;
+            text-align: right;
+            margin-top: -120px; /* Adjust margin top as needed */
+            margin-bottom: 10px;
+           
+            margin-left: 750px;
+        }
+
+        .sixth-box .button-container {
+            
+            text-align: right; /* Center the button */
+            margin-top: 20px; /* Adjust margin top as needed */
+        }
+
+        .sixth-box button {
+            padding: 15px 40px; /* Button padding */
+            background-color: rgb(94, 202, 94);; /* Button background color */
+            color: white; /* Button text color */
+            border: none; /* Remove button border */
+            border-radius: 3px; /* Button border radius */
+            cursor: pointer; /* Cursor style */
+            transition: background-color 0.3s ease; /* Smooth background color transition */
+            font-size: large; /* Button font size */
+        }
+
+        .sixth-box button:hover {
+            background-color: green; /* Button background color on hover */
+            color: white; /* Button text color on hover */
+        }
+
+        .seven-box {
+            width: 900px; /* Width of the box */
+            height: 130px; /* Height of the box */
+            background-color: white; /* Background color */
+            border: 2px solid #ccc; /* Border style */
+            border-radius: 8px; /* Border radius for rounded corners */
+            padding: 20px; /* Padding inside the box */
+            margin: 20px; /* Margin around the box */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Box shadow for a subtle 3D effect */
+        }
+
+        .seven-box table {
+            width: 100%; /* Make the table responsive within the box */
+        }
+
+        .seven-box table h2 {
+            color: rgb(94, 202, 94); /* Heading color */
+            font-size: 1.5em; /* Adjust heading font size */
+        }
+
+        .seven-box .success-rate,
+        .seven-box .max-score,
+        .seven-box .difficulty {
+            color: rgb(125, 125, 125); /* Gray color for details */
+            font-size: 1.2em; /* Adjust font size */
+        }
+
+        .seven-box .symbol {
+            bottom: 500px;
+            text-align: right;
+            margin-top: -120px; /* Adjust margin top as needed */
+            margin-bottom: 10px;
+           
+            margin-left: 750px;
+        }
+
+        .seven-box .button-container {
+            
+            text-align: right; /* Center the button */
+            margin-top: 20px; /* Adjust margin top as needed */
+        }
+
+        .seven-box button {
+            padding: 15px 40px; /* Button padding */
+            background-color: rgb(94, 202, 94);; /* Button background color */
+            color: white; /* Button text color */
+            border: none; /* Remove button border */
+            border-radius: 3px; /* Button border radius */
+            cursor: pointer; /* Cursor style */
+            transition: background-color 0.3s ease; /* Smooth background color transition */
+            font-size: large; /* Button font size */
+        }
+
+        .seven-box button:hover {
+            background-color: green; /* Button background color on hover */
+            color: white; /* Button text color on hover */
+        }
+
+        .eig-box {
+            width: 900px; /* Width of the box */
+            height: 130px; /* Height of the box */
+            background-color: white; /* Background color */
+            border: 2px solid #ccc; /* Border style */
+            border-radius: 8px; /* Border radius for rounded corners */
+            padding: 20px; /* Padding inside the box */
+            margin: 20px; /* Margin around the box */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Box shadow for a subtle 3D effect */
+        }
+
+        .eig-box table {
+            width: 100%; /* Make the table responsive within the box */
+        }
+
+        .eig-box table h2 {
+            color: rgb(94, 202, 94); /* Heading color */
+            font-size: 1.5em; /* Adjust heading font size */
+        }
+
+        .eig-box .success-rate,
+        .eig-box .max-score,
+        .eig-box .difficulty {
+            color: rgb(125, 125, 125); /* Gray color for details */
+            font-size: 1.2em; /* Adjust font size */
+        }
+
+        .eig-box .symbol {
+            bottom: 500px;
+            text-align: right;
+            margin-top: -120px; /* Adjust margin top as needed */
+            margin-bottom: 10px;
+           
+            margin-left: 750px;
+        }
+
+        .eig-box .button-container {
+            
+            text-align: right; /* Center the button */
+            margin-top: 20px; /* Adjust margin top as needed */
+        }
+
+        .eig-box button {
+            padding: 15px 40px; /* Button padding */
+            background-color: rgb(94, 202, 94);; /* Button background color */
+            color: white; /* Button text color */
+            border: none; /* Remove button border */
+            border-radius: 3px; /* Button border radius */
+            cursor: pointer; /* Cursor style */
+            transition: background-color 0.3s ease; /* Smooth background color transition */
+            font-size: large; /* Button font size */
+        }
+
+        .eig-box button:hover {
+            background-color: green; /* Button background color on hover */
+            color: white; /* Button text color on hover */
+        }
+        .nine-box {
+            width: 900px; /* Width of the box */
+            height: 130px; /* Height of the box */
+            background-color: white; /* Background color */
+            border: 2px solid #ccc; /* Border style */
+            border-radius: 8px; /* Border radius for rounded corners */
+            padding: 20px; /* Padding inside the box */
+            margin: 20px; /* Margin around the box */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Box shadow for a subtle 3D effect */
+        }
+
+        .nine-box table {
+            width: 100%; /* Make the table responsive within the box */
+        }
+
+        .nine-box table h2 {
+            color: rgb(94, 202, 94); /* Heading color */
+            font-size: 1.5em; /* Adjust heading font size */
+        }
+
+        .nine-box .success-rate,
+        .nine-box .max-score,
+        .nine-box .difficulty {
+            color: rgb(125, 125, 125); /* Gray color for details */
+            font-size: 1.2em; /* Adjust font size */
+        }
+
+        .nine-box .symbol {
+            bottom: 500px;
+            text-align: right;
+            margin-top: -120px; /* Adjust margin top as needed */
+            margin-bottom: 10px;
+           
+            margin-left: 750px;
+        }
+
+        .nine-box .button-container {
+            
+            text-align: right; /* Center the button */
+            margin-top: 20px; /* Adjust margin top as needed */
+        }
+
+        .nine-box button {
+            padding: 15px 40px; /* Button padding */
+            background-color: rgb(94, 202, 94);; /* Button background color */
+            color: white; /* Button text color */
+            border: none; /* Remove button border */
+            border-radius: 3px; /* Button border radius */
+            cursor: pointer; /* Cursor style */
+            transition: background-color 0.3s ease; /* Smooth background color transition */
+            font-size: large; /* Button font size */
+        }
+
+        .ten-box button:hover {
+            background-color: green; /* Button background color on hover */
+            color: white; /* Button text color on hover */
+        }
+        .ten-box {
+            width: 900px; /* Width of the box */
+            height: 130px; /* Height of the box */
+            background-color: white; /* Background color */
+            border: 2px solid #ccc; /* Border style */
+            border-radius: 8px; /* Border radius for rounded corners */
+            padding: 20px; /* Padding inside the box */
+            margin: 20px; /* Margin around the box */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Box shadow for a subtle 3D effect */
+        }
+
+        .ten-box table {
+            width: 100%; /* Make the table responsive within the box */
+        }
+
+        .ten-box table h2 {
+            color: rgb(94, 202, 94); /* Heading color */
+            font-size: 1.5em; /* Adjust heading font size */
+        }
+
+        .ten-box .success-rate,
+        .ten-box .max-score,
+        .ten-box .difficulty {
+            color: rgb(125, 125, 125); /* Gray color for details */
+            font-size: 1.2em; /* Adjust font size */
+        }
+
+        .ten-box .symbol {
+            bottom: 500px;
+            text-align: right;
+            margin-top: -120px; /* Adjust margin top as needed */
+            margin-bottom: 10px;
+           
+            margin-left: 750px;
+        }
+
+        .ten-box .button-container {
+            
+            text-align: right; /* Center the button */
+            margin-top: 20px; /* Adjust margin top as needed */
+        }
+
+        .ten-box button {
+            padding: 15px 40px; /* Button padding */
+            background-color: rgb(94, 202, 94);; /* Button background color */
+            color: white; /* Button text color */
+            border: none; /* Remove button border */
+            border-radius: 3px; /* Button border radius */
+            cursor: pointer; /* Cursor style */
+            transition: background-color 0.3s ease; /* Smooth background color transition */
+            font-size: large; /* Button font size */
+        }
+
+        .ten-box button:hover {
+            background-color: green; /* Button background color on hover */
+            color: white; /* Button text color on hover */
+        }
+
+        footer {
+            background: white;
+            color: rgb(7, 185, 255);
+            text-align: center;
+            padding: 10px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="https://www.hackerrank.com/onboarding?h_r=logo&redirect=%2Fdashboard">HackerRank</a></li>
+                <li><span class="vertical-line"></span></li>
+                <li><a href="https://www.hackerrank.com/onboarding?redirect=%2Fdashboard">Prepare</a></li>
+                <li><a href="https://www.hackerrank.com/onboarding?redirect=%2Fskills-verification">Certify</a></li>
+                <li><a href="#">Compete</a></li>
+                <li><a href="https://www.hackerrank.com/onboarding?redirect=%2Fapply">Apply</a></li>
+            </ul>
+        </nav>
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Search...">
+            <div class="search-icon"></div>
+        </div>
+    </header>
+    <br>
+    <h3>All Contests &nbsp;&gt;&nbsp;FACEPrep FOP</h3>
+    <br>
+    <hr>
+    <h2>FACEPrep FOP&nbsp;&nbsp;&nbsp;<a href="https://www.hackerrank.com/faceprep-fop">Details ►</a></h2>
+    <br>
+    <hr>
+    <br>
+    <strong><h2>Challenges</h2></strong>
+    <br>
+    <div class="rectangular-box">
+        <table>
+            <tr>
+                <td colspan="2"><h2>Input & Output - Say "Hello, World!"</h2></td>
+            </tr>
+            <tr>
+                <td>
+                    <br>
+                    <span class="success-rate"><b>Success Rate:</b>&nbsp;98.51%</span>&nbsp;&nbsp;&nbsp;
+                    <span class="max-score"><b>Max Score:</b>&nbsp;50</span>&nbsp;&nbsp;&nbsp;
+                    <span class="difficulty"><b>Difficulty:</b>&nbsp;Medium</span><br>
+                    <br>
+                    <div class="symbol">
+                        <span>&#128172;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>&#127942;</span>
+                    </div>
+                    <div class="button-container">
+                        <button onclick="window.location.href='https://www.hackerrank.com/contests/faceprep-fop/challenges/say-hello-world-1-2'"><b>Solve Challenge</b></button>
+                    </div>
+                    <br>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="second-box">
+        <table>
+            <tr>
+                <td colspan="2"><h2>Input & Output - Hello World with tab</h2></td>
+            </tr>
+            <tr>
+                <td>
+                    <br>
+                    <span class="success-rate"><b>Success Rate:</b>&nbsp;99.44%</span>&nbsp;&nbsp;&nbsp;
+                    <span class="max-score"><b>Max Score:</b>&nbsp;50</span>&nbsp;&nbsp;&nbsp;
+                    <span class="difficulty"><b>Difficulty:</b>&nbsp;Easy</span><br>
+                    <br>
+                    <div class="symbol">
+                        <span>&#128172;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>&#127942;</span>
+                    </div>
+                    <div class="button-container">
+                        <button onclick="window.location.href='https://www.hackerrank.com/contests/faceprep-fop/challenges/hello-world-with-tab'"><b>Solve Challenge</b></button>
+                    </div>
+                    <br>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="third-box">
+        <table>
+            <tr>
+                <td colspan="2"><h2>Input & Output - Hello World with a new line</h2></td>
+            </tr>
+            <tr>
+                <td>
+                    <br>
+                    <span class="success-rate"><b>Success Rate:</b>&nbsp;100.00%</span>&nbsp;&nbsp;&nbsp;
+                    <span class="max-score"><b>Max Score:</b>&nbsp;50</span>&nbsp;&nbsp;&nbsp;
+                    <span class="difficulty"><b>Difficulty:</b>&nbsp;Medium</span><br>
+                    <br>
+                    <div class="symbol">
+                        <span>&#128172;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>&#127942;</span>
+                    </div>
+                    <div class="button-container">
+                        <button onclick="window.location.href='https://www.hackerrank.com/contests/fundamentals-of-programming/challenges/hello-world-with-a-new-line'"><b>Solve Challenge</b></button>
+                    </div>
+                    <br>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="fourth-box">
+        <table>
+            <tr>
+                <td colspan="2"><h2>Input & Output - Student Details</h2></td>
+            </tr>
+            <tr>
+                <td>
+                    <br>
+                    <span class="success-rate"><b>Success Rate:</b>&nbsp;87.22%</span>&nbsp;&nbsp;&nbsp;
+                    <span class="max-score"><b>Max Score:</b>&nbsp;40</span>&nbsp;&nbsp;&nbsp;
+                    <span class="difficulty"><b>Difficulty:</b>&nbsp;Medium</span><br>
+                    <br>
+                    <div class="symbol">
+                        <span>&#128172;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>&#127942;</span>
+                    </div>
+                    <div class="button-container">
+                        <button onclick="window.location.href='https://www.hackerrank.com/contests/fundamentals-of-programming/challenges/student-details-9'"><b>Solve Challenge</b></button>
+                    </div>
+                    <br>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="fifth-box">
+        <table>
+            <tr>
+                <td colspan="2"><h2>Input & Output - ASCII Values - I</h2></td>
+            </tr>
+            <tr>
+                <td>
+                    <br>
+                    <span class="success-rate"><b>Success Rate:</b>&nbsp;87.22%</span>&nbsp;&nbsp;&nbsp;
+                    <span class="max-score"><b>Max Score:</b>&nbsp;40</span>&nbsp;&nbsp;&nbsp;
+                    <span class="difficulty"><b>Difficulty:</b>&nbsp;Medium</span><br>
+                    <br>
+                    <div class="symbol">
+                        <span>&#128172;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>&#127942;</span>
+                    </div>
+                    <div class="button-container">
+                        <button onclick="window.location.href='https://www.hackerrank.com/contests/fundamentals-of-programming/challenges/ascii-values-i'"><b>Solve Challenge</b></button>
+                    </div>
+                    <br>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="sixth-box">
+        <table>
+            <tr>
+                <td colspan="2"><h2>Input & Output - ASCII Values - II</h2></td>
+            </tr>
+            <tr>
+                <td>
+                    <br>
+                    <span class="success-rate"><b>Success Rate:</b>&nbsp;99.16%</span>&nbsp;&nbsp;&nbsp;
+                    <span class="max-score"><b>Max Score:</b>&nbsp;40</span>&nbsp;&nbsp;&nbsp;
+                    <span class="difficulty"><b>Difficulty:</b>&nbsp;Medium</span><br>
+                    <br>
+                    <div class="symbol">
+                        <span>&#128172;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>&#127942;</span>
+                    </div>
+                    <div class="button-container">
+                        <button onclick="window.location.href='https://www.hackerrank.com/contests/fundamentals-of-programming/challenges/ascii-values-ii'"><b>Solve Challenge</b></button>
+                    </div>
+                    <br>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="seven-box">
+        <table>
+            <tr>
+                <td colspan="2"><h2>Input & Output - Round Off</h2></td>
+            </tr>
+            <tr>
+                <td>
+                    <br>
+                    <span class="success-rate"><b>Success Rate:</b>&nbsp;97.41%</span>&nbsp;&nbsp;&nbsp;
+                    <span class="max-score"><b>Max Score:</b>&nbsp;40</span>&nbsp;&nbsp;&nbsp;
+                    <span class="difficulty"><b>Difficulty:</b>&nbsp;Medium</span><br>
+                    <br>
+                    <div class="symbol">
+                        <span>&#128172;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>&#127942;</span>
+                    </div>
+                    <div class="button-container">
+                        <button onclick="window.location.href='https://www.hackerrank.com/contests/fundamentals-of-programming/challenges/round-off-3-1'"><b>Solve Challenge</b></button>
+                    </div>
+                    <br>
+                </td>
+            </tr>
+        </table>
+        </div>
+
+        <div class="eig-box">
+            <table>
+                <tr>
+                    <td colspan="2"><h2>Operators - Fencing the Ground</h2></td>
+                </tr>
+                <tr>
+                    <td>
+                        <br>
+                        <span class="success-rate"><b>Success Rate:</b>&nbsp;98.63%</span>&nbsp;&nbsp;&nbsp;
+                        <span class="max-score"><b>Max Score:</b>&nbsp;60</span>&nbsp;&nbsp;&nbsp;
+                        <span class="difficulty"><b>Difficulty:</b>&nbsp;Medium</span><br>
+                        <br>
+                        <div class="symbol">
+                            <span>&#128172;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>&#127942;</span>
+                        </div>
+                        <div class="button-container">
+                            <button onclick="window.location.href='https://www.hackerrank.com/contests/fundamentals-of-programming/challenges/fencing-the-ground-1'"><b>Solve Challenge</b></button>
+                        </div>
+                        <br>
+                    </td>
+                </tr>
+            </table>
+            </div>
+
+            <div class="nine-box">
+                <table>
+                    <tr>
+                        <td colspan="2"><h2>Operators - The Newspaper Agency</h2></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <br>
+                            <span class="success-rate"><b>Success Rate:</b>&nbsp;98.56%</span>&nbsp;&nbsp;&nbsp;
+                            <span class="max-score"><b>Max Score:</b>&nbsp;60</span>&nbsp;&nbsp;&nbsp;
+                            <span class="difficulty"><b>Difficulty:</b>&nbsp;Medium</span><br>
+                            <br>
+                            <div class="symbol">
+                                <span>&#128172;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>&#127942;</span>
+                            </div>
+                            <div class="button-container">
+                                <button onclick="window.location.href='https://www.hackerrank.com/contests/fundamentals-of-programming/challenges/the-newspaper-agency-5'"><b>Solve Challenge</b></button>
+                            </div>
+                            <br>
+                        </td>
+                    </tr>
+                </table>
+                </div>
+
+
+                <div class="ten-box">
+                    <table>
+                        <tr>
+                            <td colspan="2"><h2>Operators - Harry Potter</h2></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <br>
+                                <span class="success-rate"><b>Success Rate:</b>&nbsp;75.63%</span>&nbsp;&nbsp;&nbsp;
+                                <span class="max-score"><b>Max Score:</b>&nbsp;60</span>&nbsp;&nbsp;&nbsp;
+                                <span class="difficulty"><b>Difficulty:</b>&nbsp;Medium</span><br>
+                                <br>
+                                <div class="symbol">
+                                    <span>&#128172;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>&#127942;</span>
+                                </div>
+                                <div class="button-container">
+                                    <button onclick="window.location.href='https://www.hackerrank.com/contests/fundamentals-of-programming/challenges/harry-potter-5'"><b>Solve Challenge</b></button>
+                                </div>
+                                <br>
+                            </td>
+                        </tr>
+                    </table>
+                    </div>
+                    <br><br>
+                    <hr>
+                    
+    <footer>
+        <p>Interview Prep | Blog | Scoring | Environment | FAQ | About Us | Support | Careers | Terms Of Service | Privacy Policy |</p>
+    </footer>
+</body>
+</html>
